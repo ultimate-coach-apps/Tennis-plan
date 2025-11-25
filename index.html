@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tennis-Plan Ultimate + Line</title>
+<title>Badi-Plan Ultimate + Line</title>
 
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
@@ -11,6 +11,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+/* ...ここから下にスタイル設定が続きます... */
+
 /* --- 基本設定 --- */
 body { margin: 0; padding: 0; background: #222; color: white; font-family: -apple-system, sans-serif; padding-bottom: 80px; }
 button { cursor: pointer; border: none; border-radius: 4px; font-weight: bold; color: white; touch-action: manipulation;}
@@ -20,7 +22,7 @@ input, select { padding: 8px; border-radius: 4px; border: 1px solid #555; backgr
 #screen-plan { display: block; padding: 15px; }
 .timeline-header { position: sticky; top: 0; background: #222; z-index: 10; padding-bottom: 10px; border-bottom: 1px solid #444; }
 .header-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.app-title { font-size: 18px; margin: 0; font-weight: bold; color: #add8e6; } /* テニスっぽく水色系に */
+.app-title { font-size: 18px; margin: 0; font-weight: bold; }
 
 .btn-analytics { background: #6f42c1; padding: 5px 15px; font-size: 12px; display: flex; align-items: center; gap: 5px; }
 .btn-share-line { background: #06C755; padding: 5px 15px; font-size: 12px; margin-left: 5px; }
@@ -69,8 +71,7 @@ display: flex; align-items: center; border-left: 8px solid #666; position: relat
 .btn-del-lib { background: #dc3545; padding: 5px 10px; font-size: 12px; }
 
 /* --- 作戦ボード画面 --- */
-/* テニス用に背景色を変更（ハードコート風の青） */
-#screen-board { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2c3e50; z-index: 50; display: none; touch-action: none; }
+#screen-board { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2e8b57; z-index: 50; display: none; touch-action: none; }
 #top-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; background: rgba(0,0,0,0.9); display: flex; align-items: center; padding: 0 10px; justify-content: space-between; z-index: 100; }
 .btn-back { background: #666; padding: 8px 15px; font-size: 12px; }
 #board-title { font-size: 16px; font-weight: bold; color: #fff; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 120px;}
@@ -98,13 +99,11 @@ display: flex; align-items: center; border-left: 8px solid #666; position: relat
 .btn-play { background: #28a745; padding: 8px 30px; font-size: 14px; display: none;}
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
 
-#svg-container { position: absolute; top: 50px; bottom: 130px; left: 0; right: 0; background: #2e8b57; /* コート外側の緑 */ }
+#svg-container { position: absolute; top: 50px; bottom: 130px; left: 0; right: 0; }
 svg { width: 100%; height: 100%; }
 
 /* SVG内スタイル定義 */
-.court-base { fill: #4169e1; } /* インコートの青 */
-.court-line { stroke: white; stroke-width: 3; fill: none; }
-.net-line { stroke: #eee; stroke-width: 4; stroke-dasharray: 5,5; }
+.court-line { stroke: white; stroke-width: 2; fill: none; }
 .draw-path { stroke: #ffeb3b; stroke-width: 4; fill: none; stroke-linecap: round; opacity: 0.8; }
 .arrow-line { stroke-width: 4; fill: none; opacity: 0.9; }
 .arrow-shot { stroke: #ffeb3b; marker-end: url(#arrowhead-shot); }
@@ -127,7 +126,7 @@ body.presentation-mode #svg-container { top:0; bottom:0; }
 <div id="screen-plan">
 <div class="timeline-header">
 <div class="header-top-row">
-<h2 class="app-title">Tennis-Plan Manager</h2>
+<h2 class="app-title">Badi-Plan Manager</h2>
 <div style="display:flex;">
 <button class="btn-analytics" onclick="openAnalytics()">📊 分析</button>
 <button class="btn-share-line" onclick="sharePlanText()">LINE共有</button>
@@ -150,7 +149,7 @@ body.presentation-mode #svg-container { top:0; bottom:0; }
 <div id="add-area">
 <div style="color:#aaa; font-size:12px; margin-bottom:5px;">メニューを追加</div>
 <div class="add-row">
-<input type="text" id="inp-title" placeholder="例: クロスラリ―" style="flex-grow:1;">
+<input type="text" id="inp-title" placeholder="例: フットワーク" style="flex-grow:1;">
 <input type="number" id="inp-time" value="15" style="width:50px;">分
 </div>
 <div class="add-row">
@@ -236,31 +235,24 @@ body.presentation-mode #svg-container { top:0; bottom:0; }
 </defs>
 <style>
 /* SVG内スタイル（画像化用） */
-.court-base { fill: #4169e1; }
-.court-line { stroke: white; stroke-width: 3; fill: none; }
-.net-line { stroke: #eee; stroke-width: 4; stroke-dasharray: 5,5; }
+.court-line { stroke: white; stroke-width: 2; fill: none; }
 .draw-path { stroke: #ffeb3b; stroke-width: 4; fill: none; stroke-linecap: round; opacity: 0.8; }
 .arrow-line { stroke-width: 4; fill: none; opacity: 0.9; }
 .arrow-shot { stroke: #ffeb3b; marker-end: url(#arrowhead-shot); }
 .arrow-move { stroke: #007AFF; stroke-dasharray: 10,10; marker-end: url(#arrowhead-move); }
 text { font-family: sans-serif; }
 </style>
-<rect width="1340" height="610" fill="#2e8b57" /> <g id="lines">
-<rect x="107" y="45" width="1126" height="520" class="court-base" /> <rect x="107" y="45" width="1126" height="520" class="court-line" />
-
-<line x1="670" y1="25" x2="670" y2="585" class="net-line" />
-
-<line x1="107" y1="110" x2="1233" y2="110" class="court-line" />
-<line x1="107" y1="500" x2="1233" y2="500" class="court-line" />
-
-<line x1="367" y1="110" x2="367" y2="500" class="court-line" />
-<line x1="973" y1="110" x2="973" y2="500" class="court-line" />
-
-<line x1="367" y1="305" x2="973" y2="305" class="court-line" />
-
-<line x1="107" y1="305" x2="137" y2="305" class="court-line" />
-<line x1="1203" y1="305" x2="1233" y2="305" class="court-line" />
-
+<rect width="1340" height="610" fill="#2e8b57" />
+<g id="lines">
+<rect width="1340" height="610" class="court-line" />
+<line x1="670" y1="0" x2="670" y2="610" stroke="#ddd" stroke-dasharray="5,5" stroke-width="2" />
+<line x1="472" y1="0" x2="472" y2="610" class="court-line" />
+<line x1="868" y1="0" x2="868" y2="610" class="court-line" />
+<line x1="0" y1="305" x2="472" y2="305" class="court-line" />
+<line x1="868" y1="305" x2="1340" y2="305" class="court-line" />
+<line x1="76" y1="0" x2="76" y2="610" class="court-line" />
+<line x1="1264" y1="0" x2="1264" y2="610" class="court-line" />
+<g id="alleys"><rect x="0" y="0" width="1340" height="46" class="court-line" /><rect x="0" y="564" width="1340" height="46" class="court-line" /></g>
 </g>
 <g id="drawings"></g>
 <g id="objects"></g>
@@ -282,7 +274,7 @@ text { font-family: sans-serif; }
 <div style="width:5px"></div>
 
 <button class="ctrl-btn" onclick="addPlayer()">＋人</button>
-<button class="ctrl-btn" onclick="addBall()">＋球</button>
+<button class="ctrl-btn" onclick="addShuttle()">＋球</button>
 <button class="ctrl-btn" onclick="clearDrawings()">線消</button>
 <button class="ctrl-btn" style="background:#d9534f;" onclick="clearObjects()">全消</button>
 </div>
@@ -290,10 +282,9 @@ text { font-family: sans-serif; }
 </div>
 <script>
 // --- データ管理設定 ---
-// バドミントン版と混ざらないようにKeyを変更
-const KEY_BLOCKS = 'tennis_plan_blocks_v1';
-const KEY_HISTORY = 'tennis_plan_history_v1';
-const KEY_LIBRARY = 'tennis_plan_library_v1';
+const KEY_BLOCKS = 'badi_plan_blocks_v3';
+const KEY_HISTORY = 'badi_plan_history_v3';
+const KEY_LIBRARY = 'badi_plan_library_v3';
 
 let blockList = [];
 let historyList = [];
@@ -445,7 +436,7 @@ const svg = document.getElementById('court-svg'); const gDraw = document.getElem
 
 function openBlockBoard(idx) {
 currentBlockIndex = idx; screenPlan.style.display = 'none'; screenBoard.style.display = 'block'; boardTitle.innerText = blockList[idx].title;
-resetBoardState(); if(blockList[idx].boardData) loadBoardData(blockList[idx].boardData); else { addPlayer(); addPlayer(); addBall(); }
+resetBoardState(); if(blockList[idx].boardData) loadBoardData(blockList[idx].boardData); else { addPlayer(); addPlayer(); addShuttle(); }
 setToolMode('move');
 }
 function closeBoard() {
@@ -460,23 +451,17 @@ else if(m === 'pen') document.getElementById('btn-mode-pen').classList.add('acti
 else if(m === 'arrow-shot') document.getElementById('btn-mode-arrow-shot').classList.add('active');
 else if(m === 'arrow-move') document.getElementById('btn-mode-arrow-move').classList.add('active');
 }
-function addPlayer() { state.objects.push({ id: 'p_'+Date.now(), type: 'player', x: 300+(state.objects.length*50), y: 550 }); renderObjects(); }
-// テニスボール追加に変更
-function addBall() { state.objects.push({ id: 'b_'+Date.now(), type: 'ball', x: 670, y: 300 }); renderObjects(); }
+function addPlayer() { state.objects.push({ id: 'p_'+Date.now(), type: 'player', x: 300+(state.objects.length*50), y: 400 }); renderObjects(); }
+function addShuttle() { state.objects.push({ id: 's_'+Date.now(), type: 'shuttle', x: 670, y: 300 }); renderObjects(); }
 function clearObjects() { if(confirm("全消去？")) { state.objects = []; renderObjects(); } }
 function clearDrawings() { state.drawings = []; renderDrawings(); }
 function renderObjects() {
 gObj.innerHTML = '';
 state.objects.forEach(obj => {
-const el = document.createElementNS("http://www.w3.org/2000/svg", 'circle'); // どちらも円
+const el = document.createElementNS("http://www.w3.org/2000/svg", obj.type === 'player' ? 'circle' : 'path');
 el.setAttribute('id', obj.id);
-el.setAttribute('cx', obj.x); el.setAttribute('cy', obj.y);
-if(obj.type === 'player') { 
-el.setAttribute('r', 20); el.setAttribute('fill', '#007AFF'); el.setAttribute('stroke', 'white'); el.setAttribute('stroke-width', '2'); 
-} else { 
-// ボール
-el.setAttribute('r', 10); el.setAttribute('fill', '#ccff00'); el.setAttribute('stroke', '#666'); el.setAttribute('stroke-width', '1');
-}
+if(obj.type === 'player') { el.setAttribute('cx', obj.x); el.setAttribute('cy', obj.y); el.setAttribute('r', 20); el.setAttribute('fill', '#007AFF'); el.setAttribute('stroke', 'white'); el.setAttribute('stroke-width', '2'); }
+else { const d = `M${obj.x},${obj.y-10} L${obj.x+10},${obj.y+10} L${obj.x-10},${obj.y+10} Z`; el.setAttribute('d', d); el.setAttribute('fill', 'white'); el.setAttribute('stroke', 'black'); }
 gObj.appendChild(el);
 });
 }
@@ -539,4 +524,98 @@ animationId = setInterval(() => { state.frames.push({ t: Date.now()-state.startT
 function playRec() {
 if(!state.frames.length) return; state.playing=true; const start=Date.now(); const dur=state.frames[state.frames.length-1].t;
 function step() {
-const now=Date.
+const now=Date.now()-start; const frame=state.frames.find(f=>f.t>=now);
+if(frame) { state.objects=frame.objs; renderObjects(); document.getElementById('timer').innerText=(now/1000).toFixed(1)+"s"; }
+if(now<dur) requestAnimationFrame(step); else { state.playing=false; document.getElementById('timer').innerText="End"; }
+} step();
+}
+function stopPlay() { state.playing = false; }
+function togglePresentation() { document.body.classList.toggle('presentation-mode'); }
+
+// --- ボードデータの保存・読み込み ---
+function saveBoardData() {
+if(currentBlockIndex===-1) return;
+blockList[currentBlockIndex].boardData = { data: { objects: state.objects, drawings: state.drawings, frames: state.frames } };
+saveBlocks(); alert("保存しました");
+}
+function loadBoardData(w) {
+if(!w || !w.data) return; state.objects=w.data.objects||[]; 
+state.drawings = (w.data.drawings||[]).map(d => typeof d === 'string' ? {type:'pen', d:d} : d);
+state.frames=w.data.frames||[]; renderObjects(); renderDrawings(); document.getElementById('btn-play').style.display = state.frames.length?'inline-block':'none';
+}
+function resetBoardState() {
+state = { objects:[], drawings:[], mode:'move', isDrawing:false, recording:false, playing:false, startTime:0, frames:[] }; tempArrow = null;
+renderObjects(); renderDrawings(); document.getElementById('timer').innerText=""; document.getElementById('btn-play').style.display='none';
+}
+
+// --- LINE共有機能 (テキスト・画像) 改良版 ---
+function sharePlanText() {
+if(blockList.length === 0) { alert("メニューがありません"); return; }
+
+const date = new Date().toLocaleDateString();
+// LINEで見やすいようにヘッダーと区切り線を追加
+let text = `🏸 練習メニュー (${date})\n`;
+text += `⏱ 合計時間: ${document.getElementById('total-time').innerText}分\n`;
+text += `------------------\n\n`; // 見やすい区切り
+
+blockList.forEach((b, i) => {
+// 各項目の間に空行(\n\n)を入れてスッキリさせる
+text += `■ ${i+1}. ${b.title}\n`;
+text += `   時間: ${b.time}分\n`;
+text += `   内容: ${getTypeName(b.type)}\n\n`;
+});
+
+if (navigator.share) { navigator.share({ title: '練習メニュー', text: text }).catch(e=>{}); } 
+else { prompt("コピー用:", text); }
+}
+
+async function shareBoardImage() {
+// プレゼンモードでボタン類を隠してから画像化
+const wasPresentation = document.body.classList.contains('presentation-mode');
+if(wasPresentation) togglePresentation();
+
+const svgEl = document.getElementById('court-svg');
+const serializer = new XMLSerializer();
+let source = serializer.serializeToString(svgEl);
+source = source.replace(/xmlns="http:\/\/www\.w3\.org\/2000\/svg"/g, '');
+source = '<svg xmlns="http://www.w3.org/2000/svg" ' + source.substring(4);
+
+const canvas = document.createElement('canvas'); canvas.width = 1340; canvas.height = 610;
+const ctx = canvas.getContext('2d'); 
+const img = new Image();
+img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+
+img.onload = async () => {
+ctx.drawImage(img, 0, 0);
+canvas.toBlob(async (blob) => {
+if (!blob) return;
+const file = new File([blob], "badi_tactics.png", { type: "image/png" });
+
+// 共有処理
+if (navigator.share) { 
+try { await navigator.share({ files: [file], title: '作戦ボード' }); } catch (err) {} 
+} else { 
+const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "badi_tactics.png"; document.body.appendChild(a); a.click(); document.body.removeChild(a); alert("画像がダウンロードされました。LINEで送信してください。"); 
+}
+
+if(wasPresentation) togglePresentation(); // 元に戻す
+}, 'image/png');
+};
+}
+
+// --- ファイル入出力 (バックアップ) ---
+function exportData() {
+const data = { blocks: localStorage.getItem(KEY_BLOCKS), history: localStorage.getItem(KEY_HISTORY), library: localStorage.getItem(KEY_LIBRARY) };
+const blob = new Blob([JSON.stringify(data)], {type: "application/json"});
+const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "badi_backup.json"; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+function importData(input) {
+const file = input.files[0]; if(!file) return;
+if(!confirm("上書きしますか？")) return;
+const reader = new FileReader();
+reader.onload = e => { try { const d = JSON.parse(e.target.result); if(d.blocks) localStorage.setItem(KEY_BLOCKS, d.blocks); if(d.history) localStorage.setItem(KEY_HISTORY, d.history); if(d.library) localStorage.setItem(KEY_LIBRARY, d.library); location.reload(); } catch(err) { alert("エラー"); } };
+reader.readAsText(file);
+}
+</script>
+</body>
+</html>
